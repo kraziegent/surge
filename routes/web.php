@@ -29,4 +29,5 @@ Route::middleware('auth')->group(function () {
     })->name('logout');
 
     Route::get('/dashboard', App\Http\Livewire\Dashboard::class)->name('dashboard');
+    Route::get('/profile', App\Http\Livewire\Profile::class)->name('profile');
 });

@@ -8,15 +8,16 @@ use Tests\TestCase;
 
 class ProfileTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-    public function test_example()
-    {
-        $response = $this->get('/');
+    use RefreshDatabase;
 
-        $response->assertStatus(200);
+    /** @test */
+    function can_see_livewire_profile_component_on_profile_page() {
+
+        $user = \App\Models\User::factory(1)->create();
+
+        $this->actingAs($user->first())
+        ->get('/profile')
+        ->assertSuccessful()
+        ->assertSeeLivewire('profile');
     }
 }
